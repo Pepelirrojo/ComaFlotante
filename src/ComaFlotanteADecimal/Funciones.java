@@ -19,20 +19,24 @@ public class Funciones {
 		return rspta;
 	}
 
-	long Exponente() {
-		
+	long exponente() {
+
 		long num, aux, digit, decimal;
 		int expo;
 		boolean esBinario;
 		do {
 			System.out.print("Introduce el exponente en binario: ");
 			num = sc.nextLong();
+			while (num > 99999999 || num < 0) {
+				System.out.print("Introduce el exponente en binario: ");
+				num = sc.nextLong();
+			}
 			esBinario = true;
 			aux = num;
 			while (aux != 0) {
 				digit = aux % 10;
-				if (digit != 0 && digit != 1) { 
-					esBinario = false; 
+				if (digit != 0 && digit != 1) {
+					esBinario = false;
 				}
 				aux = aux / 10;
 			}
@@ -40,19 +44,20 @@ public class Funciones {
 		expo = 0;
 		decimal = 0;
 		while (num != 0) {
-			
+
 			digit = num % 10;
-			
+
 			decimal = decimal + digit * (int) Math.pow(2, expo);
-			
+
 			expo++;
-			
+
 			num = num / 10;
 		}
 		decimal -= 127;
 		return decimal;
 	}
-	void Mantisa(long decimal) {
+
+	float mantisa(long decimal) {
 		System.out.println("Introduce la Mantisa: [ej: 0,x] ");
 		float mant = sc.nextFloat();
 		float result;
@@ -60,8 +65,18 @@ public class Funciones {
 			System.out.println("Introduce la Mantisa: [ej: 0,x] ");
 			mant = sc.nextFloat();
 		}
+		
 		mant += 1;
 		result = (float) (mant * (Math.pow(2, decimal)));
-		System.out.println(result);
+		return result;
+	}
+
+	void resultFinal(boolean rspta, float result) {
+		if (rspta == false) {
+			result -= result * 2;
+			System.out.println("El numero en decimal es: " + result);
+		} else {
+			System.out.println("El numero en decimal es: " + result);
+		}
 	}
 }
