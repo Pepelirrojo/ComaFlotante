@@ -17,6 +17,39 @@ public class Funciones {
 			rspta = true;
 		}
 		return rspta;
-
 	}
+
+	long Exponente() {
+		long num, aux, digit, decimal;
+		int expo;
+		boolean esBinario;
+		do {
+			System.out.print("Introduce el exponente en binario: ");
+			num = sc.nextLong();
+			esBinario = true;
+			aux = num;
+			while (aux != 0) {
+				digit = aux % 10;
+				if (digit != 0 && digit != 1) { 
+					esBinario = false; 
+				}
+				aux = aux / 10;
+			}
+		} while (!esBinario);
+		expo = 0;
+		decimal = 0;
+		while (num != 0) {
+			
+			digit = num % 10;
+			
+			decimal = decimal + digit * (int) Math.pow(2, expo);
+			
+			expo++;
+			
+			num = num / 10;
+		}
+		System.out.println("Decimal: " + decimal);
+		return decimal;
+	}
+
 }
