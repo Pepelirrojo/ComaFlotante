@@ -20,6 +20,7 @@ public class Funciones {
 	}
 
 	long Exponente() {
+		
 		long num, aux, digit, decimal;
 		int expo;
 		boolean esBinario;
@@ -48,8 +49,20 @@ public class Funciones {
 			
 			num = num / 10;
 		}
-		System.out.println("Decimal: " + decimal);
+		decimal -= 127;
 		return decimal;
+	}
+	void Mantisa(long decimal) {
+		System.out.println("Introduce la Mantisa: [ej: 0,x] ");
+		float mant = sc.nextFloat();
+		float result;
+		while (mant > 0.2) {
+			System.out.println("Introduce la Mantisa: [ej: 0,x] ");
+			mant = sc.nextFloat();
+		}
+		mant += 1;
+		result = (float) (mant * (Math.pow(2, decimal)));
+		System.out.println(result);
 	}
 
 }
