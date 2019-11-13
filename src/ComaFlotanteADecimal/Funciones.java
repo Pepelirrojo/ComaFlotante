@@ -64,5 +64,4 @@ public class Funciones {
 		result = (float) (mant * (Math.pow(2, decimal)));
 		System.out.println(result);
 	}
-
 }
