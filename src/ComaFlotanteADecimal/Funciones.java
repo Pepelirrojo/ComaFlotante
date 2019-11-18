@@ -6,11 +6,12 @@ public class Funciones {
 	Scanner sc = new Scanner(System.in);
 
 	boolean esPositivo() {
+		System.out.println("PROGRAMA PARA PASAR UN NUMERO EN COMA FLOTANTE DE PRECISIÓN SENCILLA A DECIMAL");
 		boolean rspta = false;
-		System.out.println("Dime el signo [1 o 0] : ");
+		System.out.print("Dime el signo [1 o 0] : ");
 		int signo = sc.nextInt();
 		while (signo != 0 && signo != 1) {
-			System.out.println("Dime el signo [1 o 0] : ");
+			System.out.print("Dime el signo [1 o 0] : ");
 			signo = sc.nextInt();
 		}
 		if (signo == 0) {
@@ -54,21 +55,35 @@ public class Funciones {
 			num = num / 10;
 		}
 		decimal -= 127;
+		System.out.println(decimal);
 		return decimal;
+		
 	}
 
 	float mantisa(long decimal) {
-		System.out.println("Introduce la Mantisa: [ej: 0,x] ");
+		System.out.print("Introduce la Mantisa: [ej: 0,x] ");
 		float mant = sc.nextFloat();
-		float result;
+		float preResult, result = 0, expCifre = 0;
+		int cifre;
 		while (mant > 0.2) {
-			System.out.println("Introduce la Mantisa: [ej: 0,x] ");
+			System.out.print("Introduce la Mantisa: [ej: 0,x] ");
 			mant = sc.nextFloat();
 		}
-		
 		mant += 1;
-		result = (float) (mant * (Math.pow(2, decimal)));
+		preResult = (int) (mant * (Math.pow(10, decimal)));
+		System.out.println(preResult);
+		while (preResult != 0) {
+
+			cifre = (int) (preResult % 10);
+
+			result = result + cifre * (int) Math.pow(2, expCifre);
+
+			expCifre++;
+
+			preResult = preResult / 10;
+		}
 		return result;
+		
 	}
 
 	void resultFinal(boolean rspta, float result) {
